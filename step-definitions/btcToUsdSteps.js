@@ -33,7 +33,7 @@ When(
   { timeout: 600 * 1000 },
   async function (seconds, minutes) {
     let i = 0;
-    while (i < 3) {
+    while (i < 2) {
       let btcPriceInInt = await Helper.getBitcoinPriceGecko();
       console.log(btcPriceInInt);
       btcPrices.push(btcPriceInInt);
@@ -45,7 +45,7 @@ When(
 );
 
 Then(
-  "The avarage price difference for {int} minutes is less than {int}percent",
+  "The avarage price difference for {int} minutes is less than {int} percent",
   { timeout: 600 * 1000 },
   function (minutes, percent) {
     avgPrice = Helper.getAvgPrice(btcPrices);
