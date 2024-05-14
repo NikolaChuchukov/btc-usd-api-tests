@@ -10,7 +10,7 @@
 
   "scripts": {
 
-    "test": "cucumber-js"
+    "test": "cucumber-js --require step-definitions --require features"
 
   },
 
@@ -29,6 +29,5 @@
     "cucumber": "^6.0.7"
 
   }
-
 }
 

@@ -1,8 +1,7 @@
-const { config } = require("chai");
 const { coinGeckoUrl } = require("./config");
 
 class Helper {
-static getAvgPrice(list) {
+  static getAvgPrice(list) {
     // Check if the list is empty
     if (list.length === 0) {
       return 0;
@@ -28,27 +27,23 @@ static getAvgPrice(list) {
     return percentageChange;
   }
 
-
-  async getBitcoinPriceGecko (){   
-    fetch(coinGeckoUrl)
-        .then(response => {
-          // Check if the response is successful
-          if (!response.ok) {
-            throw new Error('Failed to fetch BTC price');
-          }
-          // Parse the response as JSON
-          return response.json();
-        })
-        .then(data => {
-          // Extract the BTC price from the response
-          const btcPrice = data.bitcoin.usd;
-          console.log('BTC price:', btcPrice);
-        })
-        .catch(error => {
-          console.error('Error fetching BTC price:', error);
-        });
-        return btcPrice
+  static async getBitcoinPriceGecko() {
+    try {
+      const response = await fetch(
+        coinGeckoUrl
+      );
+      const data = await response.json();
+      console.log("data is ", data);
+      console.log("Data BTC usd price:", data.bitcoin.usd);
+      return data.bitcoin.usd;
+    } catch (error) {
+      console.error("Error fetching BTC price:", error);
     }
+  }
+
+  static sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }
 
 module.exports = Helper;
